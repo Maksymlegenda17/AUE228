@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+<style>
+    body {
+        margin: 0;
+    }
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 ";
+        grid-gap: 3px;
+        height: 100vh;
+    }
+    a1 {
+        grid-area: a1;
+        background-color: #5b9bd5;
+    }
+    a2 {
+        grid-area: a2;
+        background-color: #5bd1d1;
+    }
+    a3 {
+        grid-area: a3;
+        background-color: #e16b6b;  
+    }
+    a4 {
+        grid-area: a4;
+        background-color: #ffc000;
+    }
+    a5 {
+        grid-area: a5;
+        background-color: #31a475;
+    }
+    a6 {
+        grid-area: a6;
+        background-color: #6e7d82;
+    }
+    a7 {
+        grid-area: a7;
+        background-color: #c55a11;
+    }
+    
+    @media (max-width: 500px) {
+        .wrapper {
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 "; 
+        }
+    }
+    @media (min-width: 500px) {
+        .wrapper {
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 "; 
+        }
+    }
+    @media (min-width: 750px) {
+        .wrapper {
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 "; 
+        }
+    }
+    @media (min-width: 950px) {
+        .wrapper {
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 "; 
+        }
+    }
+    @media (min-width: 1200) {
+        .wrapper {
+        grid-template-columns: 1fr 1fr 30% 20%;
+        grid-template-rows: 1fr 20% 1fr 20%;
+        grid-template-areas: 
+        "a1 a1 a1 a2 "
+        "a3 a4 a5 a2 "
+        "a6 a6 a5 a2 "
+        "a7 a7 a7 a7 "; 
+        }
+    }
+
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <a1></a1>
+
+    <a2></a2>
+
+    <a3></a3>
+
+    <a4></a4>
+
+    <a5></a5>
+
+    <a6></a6>
+
+    <a7></a7>
+
+</div>
+
+</body>
+</html>
