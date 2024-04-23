@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(sal.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: rgb(223, 222, 182);
+    font-size: 40px;
+}
+li {
+    display: inline;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+}
