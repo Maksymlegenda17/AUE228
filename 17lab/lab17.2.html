@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <title>lab17.2</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 101);
+        }
+
+        function getFeedback(guess, target) {
+            const difference = Math.abs(guess - target);
+            if (difference === 0) {
+                return "Ви вгадали!";
+            } else if (difference <= 5) {
+                return "дуже гаряче";
+            } else if (difference <= 10) {
+                return "гаряче";
+            } else if (difference <= 20) {
+                return "тепліше";
+            } else if (difference <= 30) {
+                return "холодно";
+            } else {
+                return "дуже холодно";
+            }
+        }
+
+        function logAttempt(attempt, guess, correct, feedback) {
+            const now = new Date();
+            const timestamp = now.toLocaleString('uk-UA');
+            console.log(`${timestamp} Спроба ${attempt}: число ${guess} – ${correct ? 'вірно' : 'не вірно'} (${feedback})`);
+        }
+
+        function logSuccess(attempts, target) {
+            const now = new Date();
+            const timestamp = now.toLocaleString('uk-UA');
+            console.log(`${timestamp} За ${attempts} спроб ви вгадали число ${target}.`);
+        }
+
+        function playGame() {
+            const targetNumber = getRandomNumber();
+            let attempts = 0;
+
+            while (true) {
+                const userInput = prompt("Вгадайте число від 0 до 100:");
+                if (userInput === null) {
+                    alert("Гра завершена.");
+                    return;
+                }
+
+                const guess = Number(userInput);
+                if (isNaN(guess) || guess < 0 || guess > 100) {
+                    alert("Будь ласка, введіть число від 0 до 100.");
+                    continue;
+                }
+
+                attempts++;
+                const feedback = getFeedback(guess, targetNumber);
+                logAttempt(attempts, guess, guess === targetNumber, feedback);
+
+                if (guess === targetNumber) {
+                    const now = new Date();
+                    const timestamp = now.toLocaleString('uk-UA');
+                    alert(`За ${attempts} спроб ви вгадали число ${targetNumber} (${timestamp}).`);
+                    logSuccess(attempts, targetNumber);
+                    if (confirm("Бажаєте спробувати ще раз?")) {
+                        playGame();
+                    } else {
+                        alert("Дякуємо за гру!");
+                    }
+                    return;
+                } else {
+                    alert(feedback);
+                }
+            }
+        }
+
+        playGame();
+    </script>
+</body>
+</html>
