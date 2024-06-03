@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lab23.1</title>
+</head>
+<body>
+<script>
+const translations = {
+    "ua": {
+        "languageQuestion": "Оберіть мову ua чи en?",
+        "dayQuestion": "Введіть номер дня неділі від 1 до 7:",
+        "invalidLanguage": "Неправильний ввід даних. Будь ласка, введіть 'ua' або 'en'.",
+        "invalidDay": "Неправильний ввід даних. Будь ласка, введіть номер дня від 1 до 7."
+    },
+    "en": {
+        "languageQuestion": "Choose language ua or en?",
+        "dayQuestion": "Enter the day number of the week from 1 to 7:",
+        "invalidLanguage": "Invalid input. Please enter 'ua' or 'en'.",
+        "invalidDay": "Invalid input. Please enter a day number from 1 to 7."
+    }
+};
+
+function showModal(text) {
+    const language = prompt(text).toLowerCase();
+    return language;
+}
+
+function checkLanguage() {
+    let language = "";
+    while (language !== "ua" && language !== "en") {
+        language = showModal(translations["en"]["languageQuestion"]);
+        if (language !== "ua" && language !== "en") {
+            alert(translations["en"]["invalidLanguage"]);
+        }
+    }
+    return language;
+}
+
+function checkDay(language) {
+    let day = 0;
+    while (day < 1 || day > 7) {
+        day = parseInt(prompt(translations[language]["dayQuestion"]));
+        if (day < 1 || day > 7 || isNaN(day)) {
+            alert(translations[language]["invalidDay"]);
+        }
+    }
+    return day;
+}
+
+function main() {
+    const language = checkLanguage();
+    const day = checkDay(language);
+    
+    const daysOfWeek = {
+        1: {"ua": "Понеділок", "en": "Monday"},
+        2: {"ua": "Вівторок", "en": "Tuesday"},
+        3: {"ua": "Середа", "en": "Wednesday"},
+        4: {"ua": "Четвер", "en": "Thursday"},
+        5: {"ua": "П'ятниця", "en": "Friday"},
+        6: {"ua": "Субота", "en": "Saturday"},
+        7: {"ua": "Неділя", "en": "Sunday"}
+    };
+    const result = daysOfWeek[day][language];
+    alert(result);
+}
+
+main();
+</script>
+</body>
+</html>

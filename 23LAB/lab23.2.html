@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Електромережа</title>
+</head>
+<body>
+    <h1>Електромережа</h1>
+    <div>
+        <label for="electricityNeeded">Необхідна потужність (МВт):</label>
+        <input type="number" id="electricityNeeded" min="0">
+    </div>
+    <div>
+        <label for="stationPower">Потужність електростанції (МВт):</label>
+        <input type="number" id="stationPower" min="1" max="100">
+    </div>
+    <div>
+        <label for="solarPanelPower">Денна потужність сонячних панелей (МВт):</label>
+        <input type="number" id="solarPanelPower" min="1" max="5">
+    </div>
+    <div>
+        <label for="apartments">Кількість квартир у будинку:</label>
+        <input type="number" id="apartments" min="1" max="400">
+    </div>
+    <div>
+        <label for="dayConsumption">Споживання електроенергії на квартиру вдень (кВт):</label>
+        <input type="number" id="dayConsumption" min="1">
+    </div>
+    <div>
+        <label for="nightConsumption">Споживання електроенергії на квартиру вночі (кВт):</label>
+        <input type="number" id="nightConsumption" min="1">
+    </div>
+    <button onclick="calculateElectricity()">Обчислити</button>
+    <div id="result"></div>
+
+    <script>
+        class PowerStation {
+            constructor(power) {
+                this.power = power;
+            }
+        }
+
+        class SolarPanels {
+            constructor(dayPower) {
+                this.dayPower = dayPower;
+            }
+        }
+
+        class ResidentialBuildings {
+            constructor(numberOfApartments, dayConsumption, nightConsumption) {
+                this.numberOfApartments = numberOfApartments;
+                this.dayConsumption = dayConsumption;
+                this.nightConsumption = nightConsumption;
+            }
+        }
+
+        class PowerLine {
+            constructor(power, price) {
+                this.power = power;
+                this.price = price;
+            }
+        }
+
+        function calculateElectricity() {
+            var electricityNeeded = parseFloat(document.getElementById("electricityNeeded").value);
+            var stationPower = parseInt(document.getElementById("stationPower").value);
+            var solarPanelPower = parseInt(document.getElementById("solarPanelPower").value);
+            var apartments = parseInt(document.getElementById("apartments").value);
+            var dayConsumption = parseInt(document.getElementById("dayConsumption").value);
+            var nightConsumption = parseInt(document.getElementById("nightConsumption").value);
+
+            var totalDayConsumption = apartments * dayConsumption;
+            var totalNightConsumption = apartments * nightConsumption;
+
+            var totalSolarPanelPower = solarPanelPower; // Assuming all solar panels generate the same power
+
+            var totalPowerAvailable = stationPower + totalSolarPanelPower;
+            var totalPowerNeeded = electricityNeeded + totalNightConsumption - totalDayConsumption;
+
+            var resultDiv = document.getElementById("result");
+
+            if (totalPowerNeeded <= totalPowerAvailable) {
+                var profit = (totalDayConsumption - totalNightConsumption) * 0.1; // Assuming profit per kWh
+                resultDiv.innerHTML = "Можна продати " + totalPowerNeeded + " МВт електрики вночі, прибуток: " + profit + " грн.";
+            } else {
+                var shortfall = totalPowerNeeded - totalPowerAvailable;
+                resultDiv.innerHTML = "Необхідно закупити " + shortfall + " МВт електрики.";
+            }
+        }
+    </script>
+</body>
+</html>
+
